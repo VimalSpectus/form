@@ -4,17 +4,26 @@ import Select from "react-select";
 
 
 const Input = () => {
-  //create state :-here we asign all field state
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordShow, setPasswordShow] = useState("true");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [country, setCountry] = useState("");
-  const [gender, setGender] = useState("");
+ 
   const [error, setError] = useState({});
-  const [agree, setAgree] = useState(""); //for checkbox
+
+  const[get,setGet]=useState({
+    firstName:"",
+    lastName:"",
+    email:"",
+    password:"",
+    confirmPassword:"",
+    country:"",
+    gender:"",
+    agree:"",
+  })
+// this is array distructring
+  const {firstName,lastName,email,password,confirmPassword,country,gender,agree}=get
+
+
+  const InputEevent = (e)=>{
+    setGet({...get,[e.target.name]:e.target.value})
+  }
 
   //email validation regular exp.
   let regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -30,7 +39,7 @@ const Input = () => {
     let error = {};
 
     if (firstName === "") {
-      error.firstName = "Please give correct first Name";
+      error.firstName= "Please give correct first Name";
     }
 
     if (lastName === "") {
@@ -83,9 +92,8 @@ const Input = () => {
           placeholder="First Name"
           className={classes.input_area}
           name="firstName"
-          onChange={(e) => {
-            setfirstName(e.target.value);
-          }}
+          onChange={InputEevent}
+          value={get.firstName}
         />
         <p className={classes.error_msg}>{error.firstName}</p>
 
@@ -94,9 +102,8 @@ const Input = () => {
           placeholder="Last Name"
           className={classes.input_area}
           name="lastName"
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
+          onChange={InputEevent}
+          value={get.lastName}
         />
         <p className={classes.error_msg}>{error.lastName}</p>
 
@@ -105,9 +112,9 @@ const Input = () => {
           placeholder="Email"
           className={classes.input_area}
           name="email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+
+          onChange={InputEevent}
+          value={get.email}
         />
 
         <p className={classes.error_msg}>{error.email}</p>
@@ -117,34 +124,36 @@ const Input = () => {
           placeholder="Password"
           className={classes.input_area}
           name="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          // onChange={(e) => {
+          //   setPassword(e.target.value);
+          // }}
+          onChange={InputEevent}
+          value={get.password}
         />
 
         <p className={classes.error_msg}>{error.password}</p>
-
-    
-     
-
         <input
           type="Password"
           placeholder="Re-Enter Pasword"
           className={classes.input_area}
           name="confirmPassword"
-          onChange={(e) => {
-            setConfirmPassword(e.target.value);
-          }}
+          // onChange={(e) => {
+          //   setConfirmPassword(e.target.value);
+          // }}
+          onChange={InputEevent}
+          value={get.confirmPassword}
         />
         <p className={classes.error_msg}>{error.match}</p>
 
         <Select
-        value={country}
+         name="country"
           options={options}
           className={classes.input_area_select}
           onChange={(e) => {
-            setCountry(e);
+            setGet({...get,country:e});
           }}
+          // onChange={InputEevent}
+          value={get.country}
         />
 
         <p className={classes.error_msg}>{error.country}</p>
@@ -154,27 +163,33 @@ const Input = () => {
             type="radio"
             value="Male"
             name="gender"
-            onChange={(e) => {
-              setGender(e.target.value);
-            }}
+            // onChange={(e) => {
+            //   setGender(e.target.value);
+            // }}
+            onChange={InputEevent}
+          value={get.gender}
           />
           Male
           <input
             type="radio"
             value="Female"
             name="gender"
-            onChange={(e) => {
-              setGender(e.target.value);
-            }}
+            // onChange={(e) => {
+            //   setGender(e.target.value);
+            // }}
+            onChange={InputEevent}
+            value={get.gender}
           />
           Female
           <input
             type="radio"
             value="Other"
             name="gender"
-            onChange={(e) => {
-              setGender(e.target.value);
-            }}
+            // onChange={(e) => {
+            //   setGender(e.target.value);
+            // }}
+            onChange={InputEevent}
+            value={get.gender}
           />
           Other
         </div>
@@ -185,9 +200,11 @@ const Input = () => {
             type="checkbox"
             value="agree"
             name="agree"
-            onChange={(e) => {
-              setAgree(e.target.value);
-            }}
+            // onChange={(e) => {
+            //   setAgree(e.target.value);
+            // }}
+            onChange={InputEevent}
+            value={get.agree}
           />
 
           <span> I agree all terms and conditions</span>
