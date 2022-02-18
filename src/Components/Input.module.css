@@ -1,0 +1,44 @@
+.form_field_div{
+    background-color: gray;
+    margin: auto;
+   text-align: center;
+   width: 50%;
+
+}
+.form_start{
+    width: 100%;
+  
+}
+.span_user{
+    font-size: 20px;
+    font-weight: bold;
+    color:brown;
+}
+.input_area{
+ width: 60%;
+ padding: 10px;
+ outline: none;
+ margin-top: 20px;
+}
+.input_area_select{
+    width: 67%;
+    padding: 10px;
+    outline: none;
+   margin: auto; 
+}
+.input_area_submit{
+    width: 64%;
+    padding: 10px;
+    outline: none;
+    margin-top: 20px; 
+    background-color: brown;   
+    color: #ffffff; 
+    margin-bottom: 50px; 
+}
+.error_msg{
+    color: brown;
+    text-align: left;
+    padding-left: 130px;
+
+
+}
